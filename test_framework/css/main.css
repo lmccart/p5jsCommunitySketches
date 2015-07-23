@@ -1,0 +1,395 @@
+/*
+
+Pink #ED225D
+Blue highlight/link #2D7BB6
+
+ */
+
+* {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: none;
+  color: white;
+  background: #333;
+}
+
+canvas {
+}
+
+input[type="range"] {
+  width: 160px;
+}
+
+h1, h2 {
+  font-family: "AvenirNextLTW01-MediumS", Helvetica, sans-serif;
+  margin:  0 0 5px 0;
+}
+
+#main {
+  overflow:hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -640px;
+  margin-top: -400px;
+  width: 1280px;
+  height: 800px;
+  background: white;
+}
+
+/**
+ * UI
+ */
+
+#p5 {
+  position:absolute;
+  left: 12px;
+  bottom: 12px;
+  display: none;
+  z-index: 1000;
+}
+
+#pause {
+  position:absolute;
+  display: none;
+  right: 12px;
+  bottom: 4px;
+  z-index: 1000;
+  font-size: 32px;
+  cursor: pointer;
+  vertical-align:bottom;
+  color: rgba(128,128,128,.75);
+}
+
+#pause:hover {
+  color: rgba(128,128,128,1);
+}
+
+.codePanel {
+  padding: 16px;
+  font-size: 1.5em;
+  background: rgba(45,123,182,.80);
+  color: white !important;
+  border: 2px solid rgb(45,123,182);;
+  position: absolute;
+  color: white;
+  border-radius: 4px;
+  font-family: 'Inconsolata', monospace;
+  white-space:nowrap;
+}
+
+
+.codePanel:hover {
+    text-decoration: none;
+    background: rgba(255, 184, 0, .50);
+    border: 2px solid rgb(255, 184, 0);    
+  }
+
+/**
+ * Sketch
+ */
+
+#sketchCanvas, #sketchOverlay {
+  position: absolute;
+  width: 100%;
+  z-index:100;
+}
+
+#sketchCanvas.foreground, #sketchOverlay {
+  z-index: 600;
+}
+
+/**
+ * Video
+ */
+
+#videoClip {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+}
+
+#videoCanvas {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -480px;
+  width: 960px;
+  height: 720px;
+  pointer-events: none;
+  display:none;
+  z-index: 200;
+}
+
+/**
+ *  Preload
+ */
+
+#preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  opacity: 0;
+}
+
+.fontLoadA{
+    font-family: "AvenirNextLTW01-MediumS", Helvetica, sans-serif;
+}
+
+.fontLoadB {
+  font-family: 'Inconsolata', monospace;
+}
+
+/**
+ * Welcome Panel
+ */
+
+#welcome {
+  position: absolute;
+  width: 128px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  margin-left: -64px;
+  margin-top: -64px;
+  display: none;
+}
+
+/**
+ * Error Panel
+ */
+
+#error {
+  position: absolute;
+  width: 480px;
+  text-align: left;
+  top: 50%;
+  left: 50%;
+  margin-left: -240px;
+  margin-top: -76px;
+  display: none;
+}
+
+/**
+ * CTA Panel
+ */
+
+#cta {
+
+  width: 524px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -262px;
+  margin-top: -128px;
+  background: #fefefe;
+  display: none;
+}
+
+/**
+ * Panel Classes
+ */
+
+.panelHeader {
+  background: #ED225D;
+  color: white;
+  padding: 16px;
+}
+
+.panelBody {
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-top: none;
+  color: #444;
+}
+
+.panelBody .btn {
+  width: 160px;
+  margin-bottom: 4px;
+  text-transform: lowercase;
+  font-family: "AvenirNextLTW01-MediumS";
+}
+
+/** 
+ * Weather Demo
+ */
+
+#weather {
+  position: absolute;
+  display: none;
+
+  top: 24px;
+  width: 400px;
+  left: 50%;
+  margin-left: -200px;
+  
+  text-align: center;
+}
+
+#weatherSpan {
+  display: inline-block;
+  border-radius: 4px;
+  background: rgba(45,123,182,.80);
+  border: 2px solid rgb(45,123,182);
+  color: white;
+  padding: 6px 24px;
+  font-size: 60px;
+  line-height: 60px;
+  box-sizing: content-box;
+
+}
+
+#temperature {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#wind {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+#speed, #gust {
+  font-size: 20px;
+  line-height: 20px;
+  margin-left: 24px;
+  margin-right: 32px;
+}
+
+#speed {
+  margin-bottom: 8px;
+}
+
+#gauge { 
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/**
+ * Song Demo
+ */
+
+#noteContainer {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  text-align:center;
+}
+
+.note {
+  display: inline-block;
+
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+
+  font-family: "AvenirNextLTW01-MediumS", Helvetica, sans-serif;
+  font-size: 32px;
+  text-align: center;
+
+  background: rgba(45,123,182,.80);
+  border: 2px solid rgb(45,123,182);
+  color: white;
+
+  margin: 0 4px;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.note:hover {
+  background: rgba(255, 184, 0, .50);
+  border: 2px solid rgb(255, 184, 0);    
+}
+
+/**
+ * Intro Demo
+ */
+
+#labelContainer {
+  width: 500px;
+  margin-left: -250px;
+  margin-top: -2.8em;
+  text-align: center;
+}
+#labelSpan {
+  font-family: "AvenirNextLTW01-MediumS", Helvetica, sans-serif;
+  font-size: 2.4em;
+  color: rgb(45,123,182);
+}
+
+#introLogo {
+  width: 200px;
+  height: auto;
+}
+
+#bullets {
+  font-size: 1.8em;
+  line-height: 2.0em;
+  color: #2D7BB6;
+}
+
+.exampleText {
+  font-family: 'Inconsolata', monospace;
+  font-size: 2.6em;
+  color: #ccc; 
+}
+
+/**
+ * Outro Demo
+ */
+
+#outroContainer {
+  text-align: center;
+  color: rgb(45,123,182);
+}
+
+#outroContainer .fa-stack {
+  font-size: 7em;
+}
+
+#outroContainer img {
+  width:128px; 
+  height:128px;
+  margin-left:24px;
+}
+
+.outroText{
+  font-family: "AvenirNextLTW01-MediumS", Helvetica, sans-serif;
+  font-size: 2.4em;
+  color: rgb(45,123,182);  
+}
+
+/**
+ * Logo
+ */
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+#loading img
+{
+  -webkit-animation-name:             rotate; 
+  -webkit-animation-duration:         0.5s; 
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function: linear;
+}
+.asterisk {
+
+}
